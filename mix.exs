@@ -20,7 +20,7 @@ defmodule ExampleUeberauthCas.Mixfile do
   def application do
     [
       mod: {ExampleUeberauthCas.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :httpoison, :ueberauth, :ueberauth_cas]
     ]
   end
 
@@ -40,7 +40,10 @@ defmodule ExampleUeberauthCas.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:httpoison, "~> 1.2", override: true},
+      {:ueberauth, "~> 0.4"},
+      {:ueberauth_cas, "~> 1.1.0", override: true}
     ]
   end
 

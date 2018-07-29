@@ -13,6 +13,15 @@ defmodule ExampleUeberauthCasWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/auth", ExampleUeberauthCasWeb do
+    pipe_through [:browser]
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    delete "/:provider/logout", AuthController, :delete
+    get "/:provider/logout", AuthController, :delete
+  end
+
   scope "/", ExampleUeberauthCasWeb do
     pipe_through :browser # Use the default browser stack
 
