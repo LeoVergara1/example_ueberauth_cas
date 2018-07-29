@@ -9,6 +9,10 @@ defmodule ExampleUeberauthCasWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :auth do
+    plug ExampleUeberauthCasWeb.Plug.Auth
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -23,7 +27,7 @@ defmodule ExampleUeberauthCasWeb.Router do
   end
 
   scope "/", ExampleUeberauthCasWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :auth] # Use the default browser stack
 
     get "/", PageController, :index
   end
